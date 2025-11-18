@@ -263,13 +263,13 @@ export default function UploadForm() {
                     <div key={k}>
                       <dt className="text-xs text-gray-500 flex items-center justify-between">
                         <span className="capitalize">{k}</span>
-                        <span className="font-semibold text-gray-700">{v}%</span>
+                        <span className="font-semibold text-gray-700">{Number(v)}%</span>
                       </dt>
                       <dd className="mt-2">
                         <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
                           <div
                             className={`h-full ${Number(v) >= 80 ? "bg-emerald-500" : Number(v) >= 60 ? "bg-yellow-400" : "bg-red-400"}`}
-                            style={{ width: `${v}%` }}
+                            style={{ width: `${Number(v)}%` }}
                             role="progressbar"
                             aria-valuenow={Number(v)}
                             aria-valuemin={0}
