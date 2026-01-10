@@ -107,7 +107,7 @@ gcloud run deploy resume-engine \
   --region us-central1 \
   --platform managed \
   --allow-unauthenticated \
-  --set-env-vars "GOOGLE_API_KEY=xxx,OLLAMA_API_KEY=xxx,FRONTEND_URL=https://your-app.vercel.app"
+  --set-env-vars "GOOGLE_API_KEY=xxx,OLLAMA_API_KEY=xxx,FRONTEND_URL=https://resume-score-pi.vercel.app"
 
 # Get the URL
 gcloud run services describe resume-engine --region us-central1 --format 'value(status.url)'
