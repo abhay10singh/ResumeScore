@@ -18,7 +18,7 @@ Instantly analyze how well your resume matches any job description using multi-L
 
 ## 🚀 Live Demo
 
-- **Frontend:** [https://resumescore.vercel.app](https://resumescore.vercel.app)
+ [https://resumescore.vercel.app](https://resumescore.vercel.app)
 
 ---
 
