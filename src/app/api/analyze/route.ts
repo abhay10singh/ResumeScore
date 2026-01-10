@@ -1,25 +1,14 @@
-/**
- * Proxy route to forward requests to Python backend engine.
- * 
- * Use this file by renaming it to route.ts when your Python backend is deployed.
- * Set BACKEND_ENGINE_URL environment variable to your deployed engine URL.
- * 
- * Example:
- *   BACKEND_ENGINE_URL=https://resume-engine-xxx-uc.a.run.app
- */
 
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
-// Python backend URL - set this in your Vercel environment variables
 const BACKEND_URL = process.env.BACKEND_ENGINE_URL || "http://localhost:8080";
 
 export async function POST(request: NextRequest) {
   try {
     const form = await request.formData();
-    
-    // Validate that we have the required fields
+
     const file = form.get("resume") as File | null;
     const jobDescription = form.get("jd") as string | null;
 
@@ -31,14 +20,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Job description is required" }, { status: 400 });
     }
 
-    // Create new FormData to forward to Python backend
     const backendForm = new FormData();
     backendForm.append("resume", file);
     backendForm.append("jd", jobDescription);
 
     console.log(`Forwarding request to ${BACKEND_URL}/analyze`);
 
-    // Forward the request to Python backend
+ 
     const response = await fetch(`${BACKEND_URL}/analyze`, {
       method: "POST",
       body: backendForm,
@@ -55,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json();
     
-    // Transform response to match frontend expectations
+   
     return NextResponse.json({
       success: data.success,
       analysis: {
@@ -81,7 +69,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Health check - also proxies to backend
+
 export async function GET() {
   try {
     const response = await fetch(`${BACKEND_URL}/health`);
